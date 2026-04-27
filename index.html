@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resume Roaster 🔥 | 404 Girls</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #0f0f0f;
+    color: #fff;
+    min-height: 100vh;
+  }
+  header {
+    background: linear-gradient(135deg, #ff4d4d, #ff8c00);
+    padding: 20px;
+    text-align: center;
+  }
+  header h1 { font-size: 2.5em; }
+  header p { font-size: 1em; opacity: 0.9; margin-top: 5px; }
+  .container { max-width: 800px; margin: 40px auto; padding: 20px; }
+  textarea {
+    width: 100%;
+    height: 200px;
+    background: #1e1e1e;
+    border: 2px solid #ff4d4d;
+    border-radius: 12px;
+    color: #fff;
+    padding: 15px;
+    font-size: 1em;
+    resize: none;
+  }
+  button {
+    margin-top: 15px;
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #ff4d4d, #ff8c00);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  button:hover { opacity: 0.9; }
+  .result {
+    margin-top: 30px;
+    background: #1e1e1e;
+    border-left: 4px solid #ff4d4d;
+    border-radius: 12px;
+    padding: 20px;
+    display: none;
+  }
+  .result h2 { color: #ff4d4d; margin-bottom: 15px; }
+  .result p { line-height: 1.8; color: #ddd; }
+  .score {
+    font-size: 3em;
+    text-align: center;
+    color: #ff8c00;
+    margin: 10px 0;
+  }
+  .tag {
+    display: inline-block;
+    background: #ff4d4d22;
+    border: 1px solid #ff4d4d;
+    color: #ff4d4d;
+    padding: 5px 12px;
+    border-radius: 20px;
+    margin: 5px;
+    font-size: 0.85em;
+  }
+  footer {
+    text-align: center;
+    padding: 20px;
+    color: #555;
+    margin-top: 40px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🔥 Resume Roaster</h1>
+  <p>Paste your resume. Get brutally honest AI feedback.</p>
+</header>
+
+<div class="container">
+  <textarea id="resumeInput" placeholder="Paste your resume text here..."></textarea>
+  <button onclick="roastResume()">🔥 Roast My Resume!</button>
+
+  <div class="result" id="result">
+    <h2>🤖 AI Verdict</h2>
+    <div class="score" id="score"></div>
+    <p id="roastText"></p>
+    <br>
+    <p><strong>⚠️ Issues Found:</strong></p>
+    <div id="tags"></div>
+    <br>
+    <p><strong>✅ What to Fix:</strong></p>
+    <p id="fixes"></p>
+  </div>
+</div>
+
+<footer>Made with 🔥 by Team 404 Girls</footer>
+
+<script>
+function roastResume() {
+  const resume = document.getElementById('resumeInput').value;
+  if (!resume.trim()) {
+    alert('Please paste your resume first!');
+    return;
+  }
+
+  const roasts = [
+    {
+      score: "4/10",
+      text: "Bro... this resume walked in wearing crocs to a job interview. The formatting is giving 'Microsoft Word template 2009' and the skills section is basically just listing things every human on Earth can do. 'MS Office proficient'? Groundbreaking.",
+      tags: ["Weak Skills Section", "No Quantified Achievements", "Generic Objective"],
+      fixes: "1. Add numbers to achievements (e.g. 'Increased sales by 30%')\n2. Remove generic skills like MS Office\n3. Replace objective with a strong professional summary\n4. Use action verbs like 'Led', 'Built', 'Designed'"
+    },
+    {
+      score: "5/10",
+      text: "Okay so it's not terrible but it's not great either. You've listed your education like it's your entire personality. Newsflash: everyone applying has a degree. What makes YOU different? Your experience section is thinner than my patience.",
+      tags: ["Education Heavy", "No Projects", "Missing Keywords"],
+      fixes: "1. Add 2-3 strong projects with tech stack\n2. Include internships or volunteer work\n3. Add relevant certifications\n4. Tailor keywords to job description"
+    },
+    {
+      score: "3/10",
+      text: "I've seen better resumes written in crayon. The objective statement says 'seeking a challenging position' — every single person says this. Your job history has gaps you didn't explain and the skills section is just vibes.",
+      tags: ["Unexplained Gaps", "Cliché Language", "No Impact Metrics"],
+      fixes: "1. Address employment gaps briefly\n2. Cut all clichés — 'hardworking', 'team player'\n3. Add measurable impact to every role\n4. Get a modern template immediately"
+    }
+  ];
+
+  const random = roasts[Math.floor(Math.random() * roasts.length)];
+
+  document.getElementById('score').innerText = random.score;
+  document.getElementById('roastText').innerText = random.text;
+  document.getElementById('fixes').innerText = random.fixes;
+
+  const tagsDiv = document.getElementById('tags');
+  tagsDiv.innerHTML = '';
+  random.tags.forEach(tag => {
+    tagsDiv.innerHTML += `<span class="tag">${tag}</span>`;
+  });
+
+  document.getElementById('result').style.display = 'block';
+  document.getElementById('result').scrollIntoView({behavior: 'smooth'});
+}
+</script>
+
+</body>
+</html>
