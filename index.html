@@ -9,40 +9,75 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     font-family: 'Poppins', sans-serif;
-    background: #0a0a0a;
+    background: linear-gradient(135deg, #0d0d1a, #1a0d2e, #0d1a2e);
     color: #fff;
     min-height: 100vh;
   }
   header {
-    background: linear-gradient(135deg, #ff4d4d, #ff8c00);
+    background: linear-gradient(135deg, #ff6eb4, #a855f7, #3b82f6);
     padding: 30px 20px;
     text-align: center;
     position: relative;
     overflow: hidden;
   }
-  header h1 { font-size: 3em; font-weight: 800; }
-  header p { font-size: 1.1em; opacity: 0.9; margin-top: 8px; }
-  .cat-header {
+  header::before {
+    content: '💀😹🔥💅😭🐱💀😹🔥💅😭🐱';
+    position: absolute;
+    top: 5px;
+    left: 0;
+    font-size: 1.2em;
+    opacity: 0.3;
+    white-space: nowrap;
+    animation: scroll 10s linear infinite;
+  }
+  @keyframes scroll {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
+  header h1 {
     font-size: 3em;
-    animation: bounce 1s infinite;
-    display: inline-block;
+    font-weight: 800;
+    text-shadow: 0 0 20px #ff6eb4;
   }
-  @keyframes bounce {
-    0%,100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+  header p { font-size: 1em; opacity: 0.9; margin-top: 8px; }
+  .meme-row {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
+    flex-wrap: wrap;
+    background: #0d0d1a;
   }
-  .container { max-width: 850px; margin: 40px auto; padding: 20px; }
-  .intro-text {
+  .meme-card {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    border: 2px solid #a855f7;
+    border-radius: 16px;
+    padding: 15px;
     text-align: center;
-    color: #aaa;
+    width: 150px;
+    font-size: 0.8em;
+    color: #ccc;
+    transition: transform 0.2s;
+  }
+  .meme-card:hover { transform: scale(1.05); border-color: #ff6eb4; }
+  .meme-card .emoji { font-size: 3em; display: block; margin-bottom: 8px; }
+  .meme-card .caption { color: #ff6eb4; font-weight: 600; font-size: 0.85em; }
+  .container { max-width: 850px; margin: 30px auto; padding: 20px; }
+  .intro-box {
+    background: linear-gradient(135deg, #ff6eb422, #a855f722);
+    border: 1px solid #a855f7;
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
     margin-bottom: 25px;
-    font-size: 1em;
+    font-size: 0.95em;
+    color: #ddd;
   }
   textarea {
     width: 100%;
     height: 220px;
-    background: #1a1a1a;
-    border: 2px solid #ff4d4d;
+    background: #1a1a2e;
+    border: 2px solid #a855f7;
     border-radius: 16px;
     color: #fff;
     padding: 18px;
@@ -51,12 +86,12 @@
     resize: none;
     transition: border 0.3s;
   }
-  textarea:focus { outline: none; border-color: #ff8c00; }
+  textarea:focus { outline: none; border-color: #ff6eb4; box-shadow: 0 0 15px #ff6eb444; }
   button {
     margin-top: 15px;
     width: 100%;
     padding: 18px;
-    background: linear-gradient(135deg, #ff4d4d, #ff8c00);
+    background: linear-gradient(135deg, #ff6eb4, #a855f7, #3b82f6);
     border: none;
     border-radius: 16px;
     color: white;
@@ -64,90 +99,109 @@
     font-weight: 800;
     cursor: pointer;
     font-family: 'Poppins', sans-serif;
-    transition: transform 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s;
   }
-  button:hover { transform: scale(1.02); }
+  button:hover { transform: scale(1.02); box-shadow: 0 0 25px #ff6eb466; }
   .loading {
     text-align: center;
     padding: 30px;
     display: none;
-    font-size: 2em;
-    animation: spin 0.5s infinite;
+    font-size: 1.5em;
+    color: #ff6eb4;
   }
-  @keyframes spin {
-    0%,100% { transform: rotate(-5deg); }
-    50% { transform: rotate(5deg); }
-  }
+  .loading span { animation: bounce 0.6s infinite alternate; display: inline-block; }
+  @keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-10px); } }
   .result {
     margin-top: 30px;
-    background: #1a1a1a;
+    background: #1a1a2e;
     border-radius: 20px;
     padding: 30px;
     display: none;
-    border: 1px solid #333;
+    border: 1px solid #a855f755;
   }
   .score-box {
     text-align: center;
-    background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+    background: linear-gradient(135deg, #ff6eb422, #a855f722);
     border-radius: 16px;
-    padding: 20px;
+    padding: 25px;
     margin-bottom: 20px;
-    border: 2px solid #ff4d4d;
+    border: 2px solid #ff6eb4;
   }
-  .score { font-size: 4em; font-weight: 800; color: #ff4d4d; }
-  .score-label { color: #aaa; font-size: 0.9em; }
-  .cat-meme {
-    font-size: 5em;
+  .score { font-size: 4.5em; font-weight: 800; background: linear-gradient(135deg, #ff6eb4, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .score-label { color: #aaa; font-size: 0.9em; margin-top: 5px; }
+  .meme-reaction {
     text-align: center;
-    margin: 15px 0;
-    animation: bounce 1s infinite;
+    font-size: 4em;
+    margin: 20px 0;
+    animation: bounce 0.6s infinite alternate;
     display: block;
   }
+  .meme-image-box {
+    text-align: center;
+    margin: 15px 0;
+    background: #111122;
+    border-radius: 12px;
+    padding: 15px;
+    border: 1px solid #a855f733;
+  }
+  .meme-image-box img {
+    max-width: 250px;
+    border-radius: 12px;
+    margin-bottom: 8px;
+  }
+  .meme-caption {
+    color: #ff6eb4;
+    font-weight: 700;
+    font-size: 0.9em;
+  }
   .roast-text {
-    background: #111;
-    border-left: 4px solid #ff4d4d;
+    background: #111122;
+    border-left: 4px solid #ff6eb4;
     border-radius: 12px;
     padding: 20px;
     margin: 20px 0;
     line-height: 1.9;
     color: #eee;
-    font-size: 1em;
+    font-size: 0.95em;
   }
   .section-title {
-    color: #ff8c00;
+    background: linear-gradient(135deg, #ff6eb4, #a855f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     font-weight: 700;
     font-size: 1.1em;
     margin: 20px 0 10px 0;
   }
   .tag {
     display: inline-block;
-    background: #ff4d4d22;
-    border: 1px solid #ff4d4d;
-    color: #ff4d4d;
+    background: #ff6eb422;
+    border: 1px solid #ff6eb4;
+    color: #ff6eb4;
     padding: 6px 14px;
     border-radius: 20px;
     margin: 5px;
-    font-size: 0.85em;
+    font-size: 0.8em;
     font-weight: 600;
   }
   .fix-item {
-    background: #0a2a0a;
-    border-left: 3px solid #00ff88;
+    background: #0a1a0a;
+    border-left: 3px solid #4ade80;
     border-radius: 8px;
     padding: 12px 16px;
     margin: 8px 0;
     color: #ccc;
-    font-size: 0.95em;
+    font-size: 0.9em;
   }
   .verdict {
     text-align: center;
-    background: linear-gradient(135deg, #ff4d4d22, #ff8c0022);
+    background: linear-gradient(135deg, #ff6eb422, #a855f722);
     border-radius: 16px;
     padding: 20px;
     margin-top: 20px;
-    border: 1px solid #ff4d4d44;
-    font-size: 1.1em;
+    border: 1px solid #ff6eb444;
+    font-size: 1em;
     font-weight: 600;
+    color: #ff6eb4;
   }
   footer {
     text-align: center;
@@ -156,45 +210,76 @@
     margin-top: 40px;
     font-size: 0.9em;
   }
+  footer span { color: #a855f7; }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="cat-header">😾</div>
-  <h1>Resume Roaster 🔥</h1>
-  <p>Tera resume paste kar. Hum brutally honest feedback denge. No cap. 💀</p>
+  <h1>🔥 Resume Roaster</h1>
+  <p>Tera resume paste kar. Hum sach bolenge. No cap. 💅</p>
 </header>
 
+<div class="meme-row">
+  <div class="meme-card">
+    <span class="emoji">😹</span>
+    <div>"MS Office is a skill"</div>
+    <div class="caption">— every rejected resume</div>
+  </div>
+  <div class="meme-card">
+    <span class="emoji">💀</span>
+    <div>"Seeking challenging position"</div>
+    <div class="caption">— said no hired person ever</div>
+  </div>
+  <div class="meme-card">
+    <span class="emoji">🐱</span>
+    <div>"Hardworking & dedicated"</div>
+    <div class="caption">— so is my pet rock</div>
+  </div>
+  <div class="meme-card">
+    <span class="emoji">😭</span>
+    <div>"1 month internship"</div>
+    <div class="caption">— doing assigned tasks 💔</div>
+  </div>
+</div>
+
 <div class="container">
-  <p class="intro-text">Bhai/Behen, job nahi mil rahi? Shayad resume hi problem hai 👀<br>Paste karo aur sach suno.</p>
+  <div class="intro-box">
+    👀 Bhai/Behen, job nahi mil rahi? <strong>Resume hi problem hai.</strong><br>
+    Paste karo aur AI se sach suno — no sugarcoating, full roast mode ON 🔥
+  </div>
 
   <textarea id="resumeInput" placeholder="Apna resume yahan paste karo... (we won't judge. actually we will 😹)"></textarea>
-  <button onclick="roastResume()">🔥 Roast Karo Mera Resume!</button>
+  <button onclick="roastResume()">💅 Roast Karo Mera Resume!</button>
 
-  <div class="loading" id="loading">😾 AI soch raha hai...</div>
+  <div class="loading" id="loading">
+    <span>😾</span> AI analyze kar raha hai... brace yourself 💀
+  </div>
 
   <div class="result" id="result">
     <div class="score-box">
       <div class="score" id="score"></div>
-      <div class="score-label">out of 10 — AI ka verdict</div>
+      <div class="score-label">out of 10 — AI ka brutal verdict 💀</div>
     </div>
 
-    <span class="cat-meme" id="catMeme"></span>
+    <div class="meme-image-box" id="memeBox">
+      <div style="font-size:5em" id="memeEmoji"></div>
+      <div class="meme-caption" id="memeCaption"></div>
+    </div>
 
     <div class="roast-text" id="roastText"></div>
 
-    <div class="section-title">⚠️ Ye cheezein fix karo ABHI:</div>
+    <div class="section-title">⚠️ Issues Found (fix ASAP bestie):</div>
     <div id="tags"></div>
 
-    <div class="section-title">✅ Action Plan (seriously karo):</div>
+    <div class="section-title">✅ Glow Up Plan (seriously karo yaar):</div>
     <div id="fixes"></div>
 
     <div class="verdict" id="verdict"></div>
   </div>
 </div>
 
-<footer>Made with 🔥 & chai ☕ by Team 404 Girls</footer>
+<footer>Made with 💅 chai ☕ aur <span>zero sleep</span> by Team 404 Girls 🔥</footer>
 
 <script>
 function roastResume() {
@@ -211,66 +296,47 @@ function roastResume() {
     const roasts = [
       {
         score: "2/10",
-        cat: "😹",
+        memeEmoji: "💀",
+        memeCaption: "HR reading your resume rn",
         text: "Bhai... yeh resume dekh ke mera dil roya. Seriously. 'Seeking a challenging position' — bro har koi yahi likhta hai, tu kya naya kar raha hai? Skills mein 'MS Office' likha hai jaise yeh 2003 hai. 'Teamwork' aur 'Hardworking' — yaar yeh qualities toh rock mein bhi hoti hain. Tera 1 mahine ka internship jisme tune 'assigned tasks complete kiye' — matlab kya kiya actually? Kuch bhi nahi pata. HR ne 10 second mein reject kiya hoga. No cap. 💀",
-        tags: ["'Seeking challenging position' cringe hai", "MS Office = red flag", "Experience = literally nothing", "Skills section roast-worthy hai"],
-        fixes: [
-          "🗑️ 'Seeking challenging position' immediately delete karo",
-          "💡 Skills mein real tech stack likho — Python, SQL, HTML kuch toh",
-          "📊 Internship mein numbers daalo — 'Reduced X by 30%' type",
-          "🚀 2-3 projects add karo with GitHub links",
-          "✍️ Objective ki jagah Professional Summary likho"
-        ],
-        verdict: "Bhai is resume ke saath sirf apne ghar mein job milegi 😹 Fix karo please, humara dard ho raha hai."
+        tags: ["'Seeking challenging position' cringe hai 😭", "MS Office = instant red flag", "Experience = literally nothing bestie", "Skills section ne mujhe rula diya"],
+        fixes: ["🗑️ 'Seeking challenging position' ABHI delete karo", "💡 Real tech skills likho — Python, SQL, HTML kuch toh", "📊 Internship mein numbers daalo — 'Reduced X by 30%'", "🚀 2-3 projects add karo with GitHub links", "✍️ Objective ki jagah punchy Professional Summary"],
+        verdict: "Bestie is resume ke saath sirf apne ghar mein job milegi 😹 Glow up needed ASAP!"
       },
       {
         score: "3/10",
-        cat: "🙀",
-        text: "Okay toh yeh resume ek aisa movie trailer hai jisme koi movie nahi hai. Education section mein CGPA 7.2 — theek hai, but uske aage kya? Skills mein 'Communication' likha hai — beta, communication toh WhatsApp pe bhi hoti hai. 'Internet Browsing' ek skill hai tere liye?? Bhai meri nani bhi internet browse karti hai. Aur hobbies mein 'Watching movies' — recruiter ko lagta hai tune ek din mein yeh resume banaya. Kyunki shayad banaya bhi ek din mein hai. 💀",
-        tags: ["CGPA listed, achievements nahi", "'Internet Browsing' is not a skill bro", "Hobbies = recruiter ka time waste", "Zero projects mentioned"],
-        fixes: [
-          "❌ Hobbies section completely hata do",
-          "🛠️ Technical skills likho — languages, tools, frameworks",
-          "🏆 Koi achievement likho — hackathon, competition, anything",
-          "💻 Personal projects add karo — even college assignments",
-          "📝 Each experience point action verb se start karo"
-        ],
-        verdict: "Yaar 'Internet Browsing' skill hai toh mujhe bhi 10 jobs milni chahiye thi. Please revamp karo. 😹"
+        memeEmoji: "🙀",
+        memeCaption: "Me seeing 'Internet Browsing' as a skill",
+        text: "Okay toh yeh resume ek aisa movie trailer hai jisme koi movie nahi hai. 'Internet Browsing' ek skill hai tere liye?? Bhai meri nani bhi internet browse karti hai aur unka resume tujhse better hoga. CSE student hai aur ek bhi technical skill nahi?? Recruiter ne chai pi aur wapas nahi aayi. Hobbies mein 'Watching movies' — bestie yeh resume nahi dating profile ban raha hai. 💀",
+        tags: ["'Internet Browsing' is NOT a skill 😭", "Zero technical skills for CSE student", "Hobbies section = recruiter's nightmare", "No projects = instant reject"],
+        fixes: ["❌ Hobbies section RIP karo", "🛠️ Python/Java/C++ add karo please", "🏆 Koi achievement likho — hackathon, competition", "💻 Personal projects add karo", "📝 Action verbs use karo: Built, Designed, Led"],
+        verdict: "Yaar 'Internet Browsing' skill hai toh mujhe bhi 10 jobs milni chahiye thi 😹 Revamp karo!"
       },
       {
         score: "4/10",
-        cat: "😾",
-        text: "Dekh, completely hopeless nahi hai — but almost. Tera resume ek plain dosa hai bina chutney ke. Technically food hai, but koi nahi khaana chahta. Objective statement itna generic hai ki copy paste laga raha hai. Experience section mein tune likha 'helped team members' — helped kaise?? Kya kiya?? Context do bhai! Recruiter mind reader nahi hai. Aur ek mahine ki internship ko full paragraph diya but actual skills zero mention. Priorities? 😹",
-        tags: ["Generic objective statement", "Vague experience descriptions", "No quantifiable achievements", "Skills irrelevant to CSE"],
-        fixes: [
-          "🎯 Objective replace karo with 2-line punchy summary",
-          "🔢 Har experience point mein number daalo",
-          "⚡ Action verbs use karo: Built, Designed, Implemented, Led",
-          "🔗 GitHub profile add karo",
-          "📱 LinkedIn URL add karo"
-        ],
-        verdict: "Potential hai tujhme, resume mein nahi dikha raha. Ek baar seriously revamp kar. You got this! 💪🔥"
+        memeEmoji: "😾",
+        memeCaption: "Your resume walking into interviews",
+        text: "Dekh, completely hopeless nahi hai — but almost. Tera resume ek plain dosa hai bina chutney ke. Technically food hai, but koi nahi khaana chahta. 'Helped team members' — helped KAISE?? Kya kiya?? Recruiter mind reader nahi hai bestie! Aur ek mahine ki internship ko full paragraph diya but actual skills zero. Main disappointed hoon. Cat disappointed hoon. 😾",
+        tags: ["Generic objective = snooze fest 😴", "Vague experience descriptions", "No numbers anywhere bestie", "Skills section giving 2010 vibes"],
+        fixes: ["🎯 Objective replace karo with punchy 2-line summary", "🔢 Har point mein number daalo", "⚡ Action verbs: Built, Designed, Implemented", "🔗 GitHub profile add karo", "📱 LinkedIn URL add karo"],
+        verdict: "Potential hai tujhme, resume mein nahi dikha raha 😭 Ek baar seriously fix kar, you got this bestie! 💪"
       },
       {
         score: "1/10",
-        cat: "💀",
-        text: "Okay main honest rahungi — yeh resume dekh ke mujhe existential crisis aa gaya. 'Hardworking and dedicated professional' — bhai koi bhi apne resume mein 'lazy and unprofessional' nahi likhta, toh yeh point kya prove kar raha hai? Skills mein sirf soft skills hain — ek bhi technical skill nahi for a CSE student. Bhai tune 4 saal CS padha aur resume mein 'MS Office' hai. HR ne yeh dekha aur chai peene chali gayi. Wapas nahi aayi. 💀",
-        tags: ["Zero technical skills for CSE", "All clichés, no substance", "No projects = instant reject", "1 month internship doing 'tasks'"],
-        fixes: [
-          "🚨 Urgent: Saare clichés delete karo",
-          "💻 Python/Java/C++ skills mention karo",
-          "🔨 Kam se kam 2 projects banao aur add karo",
-          "📊 Numbers daalo everywhere",
-          "🎨 Better template use karo — Overleaf ya Canva"
-        ],
-        verdict: "Yaar yeh resume ek 404 error hai — content not found. 😹 Hamari team ne iska naam sahi rakha. Please rebuild from scratch!"
+        memeEmoji: "💅",
+        memeCaption: "Resume Roaster AI after reading this",
+        text: "Okay main honest rahungi — yeh resume dekh ke mujhe existential crisis aa gaya. 'Hardworking and dedicated' — bestie koi bhi apne resume mein 'lazy and unprofessional' nahi likhta, toh yeh prove kya kar raha hai?? CSE student hai aur ek bhi coding language nahi skills mein?? HR ne yeh dekha, chai peene gayi, wapas nahi aayi, resign kar diya, desh chod gaya. 💀 No cap.",
+        tags: ["Zero technical skills 💀", "All clichés, no substance bestie", "No projects = straight to trash", "1 month internship doing 'tasks' 😭"],
+        fixes: ["🚨 Urgent: Saare clichés delete karo ABHI", "💻 Python/Java/C++ MINIMUM add karo", "🔨 Kam se kam 2 projects banao", "📊 Numbers daao everywhere", "🎨 Better template — Overleaf ya Canva"],
+        verdict: "Yaar yeh resume ek 404 error hai — content not found 😹 Hamari team ka naam sahi rakha. Please rebuild! 💅"
       }
     ];
 
     const random = roasts[Math.floor(Math.random() * roasts.length)];
 
     document.getElementById('score').innerText = random.score;
-    document.getElementById('catMeme').innerText = random.cat;
+    document.getElementById('memeEmoji').innerText = random.memeEmoji;
+    document.getElementById('memeCaption').innerText = random.memeCaption;
     document.getElementById('roastText').innerText = random.text;
     document.getElementById('verdict').innerText = random.verdict;
 
@@ -289,9 +355,10 @@ function roastResume() {
     document.getElementById('loading').style.display = 'none';
     document.getElementById('result').style.display = 'block';
     document.getElementById('result').scrollIntoView({behavior: 'smooth'});
-  }, 2000);
+  }, 2500);
 }
 </script>
 
 </body>
 </html>
+
