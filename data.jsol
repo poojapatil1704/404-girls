@@ -1,0 +1,40 @@
+{
+  "roasts": [
+    {
+      "score": "2/10",
+      "memeEmoji": "💀",
+      "memeCaption": "HR reading your resume rn",
+      "text": "Bhai... yeh resume dekh ke mera dil roya. 'Seeking a challenging position' — bro har koi yahi likhta hai! Skills mein 'MS Office' likha hai jaise yeh 2003 hai. HR ne 10 second mein reject kiya hoga. No cap. 💀",
+      "tags": ["MS Office is not a skill 😭", "Zero technical skills", "Generic objective cringe hai", "No projects bestie"],
+      "fixes": ["🗑️ Delete 'Seeking challenging position' ABHI", "💡 Add Python, SQL, HTML in skills", "📊 Add numbers to experience", "🚀 Add 2-3 projects with GitHub links"],
+      "verdict": "Bestie is resume ke saath sirf ghar mein job milegi 😹 Glow up needed!"
+    },
+    {
+      "score": "3/10",
+      "memeEmoji": "🙀",
+      "memeCaption": "Me seeing Internet Browsing as a skill",
+      "text": "Okay yeh resume ek movie trailer hai jisme koi movie nahi. 'Internet Browsing' skill hai tere liye?? Meri nani bhi browse karti hai! CSE student hai aur ek bhi coding language nahi?? Recruiter chai peeke wapas nahi aayi. 💀",
+      "tags": ["Internet Browsing NOT a skill 😭", "No technical skills for CSE", "Hobbies section = nightmare", "No projects = instant reject"],
+      "fixes": ["❌ Hobbies section delete karo", "🛠️ Add Python/Java/C++", "🏆 Add any achievement", "💻 Add personal projects", "📝 Use action verbs"],
+      "verdict": "Yaar 'Internet Browsing' skill hai toh mujhe bhi 10 jobs milni chahiye thi 😹 Revamp karo!"
+    },
+    {
+      "score": "4/10",
+      "memeEmoji": "😾",
+      "memeCaption": "Your resume walking into interviews",
+      "text": "Tera resume ek plain dosa hai bina chutney ke. 'Helped team members' — helped KAISE?? Kya kiya?? Recruiter mind reader nahi hai bestie! Main disappointed hoon. Cat disappointed hoon. 😾",
+      "tags": ["Generic objective 😴", "Vague experience", "No numbers anywhere", "2010 vibes skills section"],
+      "fixes": ["🎯 Write punchy 2-line summary", "🔢 Add numbers everywhere", "⚡ Use: Built, Designed, Implemented", "🔗 Add GitHub profile", "📱 Add LinkedIn URL"],
+      "verdict": "Potential hai tujhme, resume mein nahi dikha raha 😭 Fix kar, you got this bestie! 💪"
+    },
+    {
+      "score": "1/10",
+      "memeEmoji": "💅",
+      "memeCaption": "Resume Roaster AI after reading this",
+      "text": "Yeh resume dekh ke existential crisis aa gaya. CSE student hai aur ek bhi coding language nahi?? HR ne dekha, chai peeke gayi, resign kar diya, desh chod gaya. No cap. 💀",
+      "tags": ["Zero technical skills 💀", "All clichés no substance", "No projects = trash", "1 month internship doing tasks 😭"],
+      "fixes": ["🚨 Delete ALL clichés ABHI", "💻 Add Python/Java/C++ minimum", "🔨 Build 2 projects NOW", "📊 Add numbers everywhere", "🎨 Use Overleaf or Canva template"],
+      "verdict": "Yeh resume ek 404 error hai — content not found 😹 Rebuild from scratch! 💅"
+    }
+  ]
+}
