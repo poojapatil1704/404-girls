@@ -123,7 +123,6 @@
   }
   .score { font-size: 4.5em; font-weight: 800; background: linear-gradient(135deg, #ff6eb4, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
   .score-label { color: #aaa; font-size: 0.9em; margin-top: 5px; }
-  .meme-reaction { text-align: center; font-size: 4em; margin: 20px 0; display: block; }
   .meme-image-box {
     text-align: center;
     margin: 15px 0;
@@ -241,8 +240,8 @@
   <textarea id="resumeInput" placeholder="Apna resume yahan paste karo... (we won't judge. actually we will 😹)"></textarea>
   <button onclick="roastResume()">💅 Roast Karo Mera Resume!</button>
 
-  <div class="loading" id="loading">😾 AI data fetch kar raha hai... brace yourself 💀</div>
-  <div class="error-box" id="errorBox">⚠️ Data load nahi hua! GitHub Pages update hone do, 2 min baad try karo.</div>
+  <div class="loading" id="loading">😾 AI analyze kar raha hai... brace yourself 💀</div>
+  <div class="error-box" id="errorBox">⚠️ Kuch gadbad hui! Dobara try karo 😭</div>
 
   <div class="result" id="result">
     <div class="score-box">
@@ -282,9 +281,9 @@ async function roastResume() {
   document.getElementById('errorBox').style.display = 'none';
 
   try {
-    const response = await fetch('https://poojapatil1704.github.io/404-girls/data.json');
+    const response = await fetch('https://api.jsonbin.io/v3/b/69eef0ff856a682189780850/latest');
     const data = await response.json();
-    const roasts = data.roasts;
+    const roasts = data.record.roasts;
     const random = roasts[Math.floor(Math.random() * roasts.length)];
 
     setTimeout(() => {
