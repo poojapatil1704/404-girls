@@ -5,150 +5,298 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Resume Roaster 🔥 | 404 Girls</title>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    font-family: 'Segoe UI', sans-serif;
-    background: #0f0f0f;
+    font-family: 'Poppins', sans-serif;
+    background: #0a0a0a;
     color: #fff;
     min-height: 100vh;
   }
   header {
     background: linear-gradient(135deg, #ff4d4d, #ff8c00);
-    padding: 20px;
+    padding: 30px 20px;
     text-align: center;
+    position: relative;
+    overflow: hidden;
   }
-  header h1 { font-size: 2.5em; }
-  header p { font-size: 1em; opacity: 0.9; margin-top: 5px; }
-  .container { max-width: 800px; margin: 40px auto; padding: 20px; }
+  header h1 { font-size: 3em; font-weight: 800; }
+  header p { font-size: 1.1em; opacity: 0.9; margin-top: 8px; }
+  .cat-header {
+    font-size: 3em;
+    animation: bounce 1s infinite;
+    display: inline-block;
+  }
+  @keyframes bounce {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  .container { max-width: 850px; margin: 40px auto; padding: 20px; }
+  .intro-text {
+    text-align: center;
+    color: #aaa;
+    margin-bottom: 25px;
+    font-size: 1em;
+  }
   textarea {
     width: 100%;
-    height: 200px;
-    background: #1e1e1e;
+    height: 220px;
+    background: #1a1a1a;
     border: 2px solid #ff4d4d;
-    border-radius: 12px;
+    border-radius: 16px;
     color: #fff;
-    padding: 15px;
+    padding: 18px;
     font-size: 1em;
+    font-family: 'Poppins', sans-serif;
     resize: none;
+    transition: border 0.3s;
   }
+  textarea:focus { outline: none; border-color: #ff8c00; }
   button {
     margin-top: 15px;
     width: 100%;
-    padding: 15px;
+    padding: 18px;
     background: linear-gradient(135deg, #ff4d4d, #ff8c00);
     border: none;
-    border-radius: 12px;
+    border-radius: 16px;
     color: white;
-    font-size: 1.2em;
-    font-weight: bold;
+    font-size: 1.3em;
+    font-weight: 800;
     cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    transition: transform 0.2s;
   }
-  button:hover { opacity: 0.9; }
+  button:hover { transform: scale(1.02); }
+  .loading {
+    text-align: center;
+    padding: 30px;
+    display: none;
+    font-size: 2em;
+    animation: spin 0.5s infinite;
+  }
+  @keyframes spin {
+    0%,100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+  }
   .result {
     margin-top: 30px;
-    background: #1e1e1e;
+    background: #1a1a1a;
+    border-radius: 20px;
+    padding: 30px;
+    display: none;
+    border: 1px solid #333;
+  }
+  .score-box {
+    text-align: center;
+    background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 2px solid #ff4d4d;
+  }
+  .score { font-size: 4em; font-weight: 800; color: #ff4d4d; }
+  .score-label { color: #aaa; font-size: 0.9em; }
+  .cat-meme {
+    font-size: 5em;
+    text-align: center;
+    margin: 15px 0;
+    animation: bounce 1s infinite;
+    display: block;
+  }
+  .roast-text {
+    background: #111;
     border-left: 4px solid #ff4d4d;
     border-radius: 12px;
     padding: 20px;
-    display: none;
+    margin: 20px 0;
+    line-height: 1.9;
+    color: #eee;
+    font-size: 1em;
   }
-  .result h2 { color: #ff4d4d; margin-bottom: 15px; }
-  .result p { line-height: 1.8; color: #ddd; }
-  .score {
-    font-size: 3em;
-    text-align: center;
+  .section-title {
     color: #ff8c00;
-    margin: 10px 0;
+    font-weight: 700;
+    font-size: 1.1em;
+    margin: 20px 0 10px 0;
   }
   .tag {
     display: inline-block;
     background: #ff4d4d22;
     border: 1px solid #ff4d4d;
     color: #ff4d4d;
-    padding: 5px 12px;
+    padding: 6px 14px;
     border-radius: 20px;
     margin: 5px;
     font-size: 0.85em;
+    font-weight: 600;
+  }
+  .fix-item {
+    background: #0a2a0a;
+    border-left: 3px solid #00ff88;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 8px 0;
+    color: #ccc;
+    font-size: 0.95em;
+  }
+  .verdict {
+    text-align: center;
+    background: linear-gradient(135deg, #ff4d4d22, #ff8c0022);
+    border-radius: 16px;
+    padding: 20px;
+    margin-top: 20px;
+    border: 1px solid #ff4d4d44;
+    font-size: 1.1em;
+    font-weight: 600;
   }
   footer {
     text-align: center;
-    padding: 20px;
-    color: #555;
+    padding: 30px;
+    color: #444;
     margin-top: 40px;
+    font-size: 0.9em;
   }
 </style>
 </head>
 <body>
 
 <header>
-  <h1>🔥 Resume Roaster</h1>
-  <p>Paste your resume. Get brutally honest AI feedback.</p>
+  <div class="cat-header">😾</div>
+  <h1>Resume Roaster 🔥</h1>
+  <p>Tera resume paste kar. Hum brutally honest feedback denge. No cap. 💀</p>
 </header>
 
 <div class="container">
-  <textarea id="resumeInput" placeholder="Paste your resume text here..."></textarea>
-  <button onclick="roastResume()">🔥 Roast My Resume!</button>
+  <p class="intro-text">Bhai/Behen, job nahi mil rahi? Shayad resume hi problem hai 👀<br>Paste karo aur sach suno.</p>
+
+  <textarea id="resumeInput" placeholder="Apna resume yahan paste karo... (we won't judge. actually we will 😹)"></textarea>
+  <button onclick="roastResume()">🔥 Roast Karo Mera Resume!</button>
+
+  <div class="loading" id="loading">😾 AI soch raha hai...</div>
 
   <div class="result" id="result">
-    <h2>🤖 AI Verdict</h2>
-    <div class="score" id="score"></div>
-    <p id="roastText"></p>
-    <br>
-    <p><strong>⚠️ Issues Found:</strong></p>
+    <div class="score-box">
+      <div class="score" id="score"></div>
+      <div class="score-label">out of 10 — AI ka verdict</div>
+    </div>
+
+    <span class="cat-meme" id="catMeme"></span>
+
+    <div class="roast-text" id="roastText"></div>
+
+    <div class="section-title">⚠️ Ye cheezein fix karo ABHI:</div>
     <div id="tags"></div>
-    <br>
-    <p><strong>✅ What to Fix:</strong></p>
-    <p id="fixes"></p>
+
+    <div class="section-title">✅ Action Plan (seriously karo):</div>
+    <div id="fixes"></div>
+
+    <div class="verdict" id="verdict"></div>
   </div>
 </div>
 
-<footer>Made with 🔥 by Team 404 Girls</footer>
+<footer>Made with 🔥 & chai ☕ by Team 404 Girls</footer>
 
 <script>
 function roastResume() {
   const resume = document.getElementById('resumeInput').value;
   if (!resume.trim()) {
-    alert('Please paste your resume first!');
+    alert('Arre bhai pehle resume toh paste karo 😹');
     return;
   }
 
-  const roasts = [
-    {
-      score: "4/10",
-      text: "Bro... this resume walked in wearing crocs to a job interview. The formatting is giving 'Microsoft Word template 2009' and the skills section is basically just listing things every human on Earth can do. 'MS Office proficient'? Groundbreaking.",
-      tags: ["Weak Skills Section", "No Quantified Achievements", "Generic Objective"],
-      fixes: "1. Add numbers to achievements (e.g. 'Increased sales by 30%')\n2. Remove generic skills like MS Office\n3. Replace objective with a strong professional summary\n4. Use action verbs like 'Led', 'Built', 'Designed'"
-    },
-    {
-      score: "5/10",
-      text: "Okay so it's not terrible but it's not great either. You've listed your education like it's your entire personality. Newsflash: everyone applying has a degree. What makes YOU different? Your experience section is thinner than my patience.",
-      tags: ["Education Heavy", "No Projects", "Missing Keywords"],
-      fixes: "1. Add 2-3 strong projects with tech stack\n2. Include internships or volunteer work\n3. Add relevant certifications\n4. Tailor keywords to job description"
-    },
-    {
-      score: "3/10",
-      text: "I've seen better resumes written in crayon. The objective statement says 'seeking a challenging position' — every single person says this. Your job history has gaps you didn't explain and the skills section is just vibes.",
-      tags: ["Unexplained Gaps", "Cliché Language", "No Impact Metrics"],
-      fixes: "1. Address employment gaps briefly\n2. Cut all clichés — 'hardworking', 'team player'\n3. Add measurable impact to every role\n4. Get a modern template immediately"
-    }
-  ];
+  document.getElementById('loading').style.display = 'block';
+  document.getElementById('result').style.display = 'none';
 
-  const random = roasts[Math.floor(Math.random() * roasts.length)];
+  setTimeout(() => {
+    const roasts = [
+      {
+        score: "2/10",
+        cat: "😹",
+        text: "Bhai... yeh resume dekh ke mera dil roya. Seriously. 'Seeking a challenging position' — bro har koi yahi likhta hai, tu kya naya kar raha hai? Skills mein 'MS Office' likha hai jaise yeh 2003 hai. 'Teamwork' aur 'Hardworking' — yaar yeh qualities toh rock mein bhi hoti hain. Tera 1 mahine ka internship jisme tune 'assigned tasks complete kiye' — matlab kya kiya actually? Kuch bhi nahi pata. HR ne 10 second mein reject kiya hoga. No cap. 💀",
+        tags: ["'Seeking challenging position' cringe hai", "MS Office = red flag", "Experience = literally nothing", "Skills section roast-worthy hai"],
+        fixes: [
+          "🗑️ 'Seeking challenging position' immediately delete karo",
+          "💡 Skills mein real tech stack likho — Python, SQL, HTML kuch toh",
+          "📊 Internship mein numbers daalo — 'Reduced X by 30%' type",
+          "🚀 2-3 projects add karo with GitHub links",
+          "✍️ Objective ki jagah Professional Summary likho"
+        ],
+        verdict: "Bhai is resume ke saath sirf apne ghar mein job milegi 😹 Fix karo please, humara dard ho raha hai."
+      },
+      {
+        score: "3/10",
+        cat: "🙀",
+        text: "Okay toh yeh resume ek aisa movie trailer hai jisme koi movie nahi hai. Education section mein CGPA 7.2 — theek hai, but uske aage kya? Skills mein 'Communication' likha hai — beta, communication toh WhatsApp pe bhi hoti hai. 'Internet Browsing' ek skill hai tere liye?? Bhai meri nani bhi internet browse karti hai. Aur hobbies mein 'Watching movies' — recruiter ko lagta hai tune ek din mein yeh resume banaya. Kyunki shayad banaya bhi ek din mein hai. 💀",
+        tags: ["CGPA listed, achievements nahi", "'Internet Browsing' is not a skill bro", "Hobbies = recruiter ka time waste", "Zero projects mentioned"],
+        fixes: [
+          "❌ Hobbies section completely hata do",
+          "🛠️ Technical skills likho — languages, tools, frameworks",
+          "🏆 Koi achievement likho — hackathon, competition, anything",
+          "💻 Personal projects add karo — even college assignments",
+          "📝 Each experience point action verb se start karo"
+        ],
+        verdict: "Yaar 'Internet Browsing' skill hai toh mujhe bhi 10 jobs milni chahiye thi. Please revamp karo. 😹"
+      },
+      {
+        score: "4/10",
+        cat: "😾",
+        text: "Dekh, completely hopeless nahi hai — but almost. Tera resume ek plain dosa hai bina chutney ke. Technically food hai, but koi nahi khaana chahta. Objective statement itna generic hai ki copy paste laga raha hai. Experience section mein tune likha 'helped team members' — helped kaise?? Kya kiya?? Context do bhai! Recruiter mind reader nahi hai. Aur ek mahine ki internship ko full paragraph diya but actual skills zero mention. Priorities? 😹",
+        tags: ["Generic objective statement", "Vague experience descriptions", "No quantifiable achievements", "Skills irrelevant to CSE"],
+        fixes: [
+          "🎯 Objective replace karo with 2-line punchy summary",
+          "🔢 Har experience point mein number daalo",
+          "⚡ Action verbs use karo: Built, Designed, Implemented, Led",
+          "🔗 GitHub profile add karo",
+          "📱 LinkedIn URL add karo"
+        ],
+        verdict: "Potential hai tujhme, resume mein nahi dikha raha. Ek baar seriously revamp kar. You got this! 💪🔥"
+      },
+      {
+        score: "1/10",
+        cat: "💀",
+        text: "Okay main honest rahungi — yeh resume dekh ke mujhe existential crisis aa gaya. 'Hardworking and dedicated professional' — bhai koi bhi apne resume mein 'lazy and unprofessional' nahi likhta, toh yeh point kya prove kar raha hai? Skills mein sirf soft skills hain — ek bhi technical skill nahi for a CSE student. Bhai tune 4 saal CS padha aur resume mein 'MS Office' hai. HR ne yeh dekha aur chai peene chali gayi. Wapas nahi aayi. 💀",
+        tags: ["Zero technical skills for CSE", "All clichés, no substance", "No projects = instant reject", "1 month internship doing 'tasks'"],
+        fixes: [
+          "🚨 Urgent: Saare clichés delete karo",
+          "💻 Python/Java/C++ skills mention karo",
+          "🔨 Kam se kam 2 projects banao aur add karo",
+          "📊 Numbers daalo everywhere",
+          "🎨 Better template use karo — Overleaf ya Canva"
+        ],
+        verdict: "Yaar yeh resume ek 404 error hai — content not found. 😹 Hamari team ne iska naam sahi rakha. Please rebuild from scratch!"
+      }
+    ];
 
-  document.getElementById('score').innerText = random.score;
-  document.getElementById('roastText').innerText = random.text;
-  document.getElementById('fixes').innerText = random.fixes;
+    const random = roasts[Math.floor(Math.random() * roasts.length)];
 
-  const tagsDiv = document.getElementById('tags');
-  tagsDiv.innerHTML = '';
-  random.tags.forEach(tag => {
-    tagsDiv.innerHTML += `<span class="tag">${tag}</span>`;
-  });
+    document.getElementById('score').innerText = random.score;
+    document.getElementById('catMeme').innerText = random.cat;
+    document.getElementById('roastText').innerText = random.text;
+    document.getElementById('verdict').innerText = random.verdict;
 
-  document.getElementById('result').style.display = 'block';
-  document.getElementById('result').scrollIntoView({behavior: 'smooth'});
+    const tagsDiv = document.getElementById('tags');
+    tagsDiv.innerHTML = '';
+    random.tags.forEach(tag => {
+      tagsDiv.innerHTML += `<span class="tag">${tag}</span>`;
+    });
+
+    const fixesDiv = document.getElementById('fixes');
+    fixesDiv.innerHTML = '';
+    random.fixes.forEach(fix => {
+      fixesDiv.innerHTML += `<div class="fix-item">${fix}</div>`;
+    });
+
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('result').style.display = 'block';
+    document.getElementById('result').scrollIntoView({behavior: 'smooth'});
+  }, 2000);
 }
 </script>
 
 </body>
 </html>
+   
+
+   
+   
+  
